@@ -1,0 +1,14 @@
+<div class="container mt-4">
+  <h4>Your Profile</h4>
+  <p>Email: <strong id="profileEmail">-</strong></p>
+  <div>
+    <button id="logoutBtn" class="btn btn-outline-secondary btn-sm">Logout</button>
+  </div>
+</div>
+
+<script>
+document.getElementById('profileEmail').textContent = auth.currentUserEmail() || '-';
+document.getElementById('logoutBtn').addEventListener('click', ()=> {
+  auth.logout(); auth.applyNavState(); location.hash = '#/home';
+});
+</script>

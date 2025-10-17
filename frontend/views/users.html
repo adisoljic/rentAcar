@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Users</h4>
+    <button id="addMockUserBtn" class="btn btn-sm btn-outline-primary">Add mock user</button>
+  </div>
+
+  <div class="table-responsive">
+    <table id="usersTable" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="usersTbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+function renderUsers(){
+  const tbody = document.getElementById('usersTbody');
+  const users = JSON.parse(localStorage.getItem('mock_users') || '[]');
+  tbody.innerHTML = '';
+  users.forEach(u => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${u.id}</td>
+      <td>${u.name || '-'}</td>
+      <td>${u.email}</td>
+      <td>${u.role || 'user'}</td>
+      <td><button class="btn btn-sm btn-danger btn-delete" data-id="${u.id}">Delete</button></td>`;
+    tbody.appendChild(tr);
+  });
+
+  document.querySelectorAll('.btn-delete').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = Number(btn.dataset.id);
+      let users = JSON.parse(localStorage.getItem('mock_users') || '[]');
+      users = users.filter(x => x.id !== id);
+      localStorage.setItem('mock_users', JSON.stringify(users));
+      renderUsers();
+    });
+  });
+}
+
+document.getElementById('addMockUserBtn').addEventListener('click', () => {
+  const users = JSON.parse(localStorage.getItem('mock_users') || '[]');
+  users.push({id: Date.now(), name: 'Demo user '+(users.length+1), email: 'demo'+(users.length+1)+'@test', role: 'user'});
+  localStorage.setItem('mock_users', JSON.stringify(users));
+  renderUsers();
+});
+
+renderUsers();
+</script>

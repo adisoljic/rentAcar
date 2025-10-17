@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Cars</h4>
+    <button class="btn btn-sm btn-primary" id="addDemoCar">Add demo car</button>
+  </div>
+  <div id="carsList" class="row"></div>
+</div>
+
+<script>
+const demoCarsKey = 'demo_cars';
+function renderCars(){
+  const cars = JSON.parse(localStorage.getItem(demoCarsKey) || '[]');
+  const out = document.getElementById('carsList');
+  out.innerHTML = '';
+  if (cars.length === 0) out.innerHTML = '<div class="col-12"><div class="alert alert-info">No cars yet (demo)</div></div>';
+  cars.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'col-md-4 mb-3';
+    card.innerHTML = `
+      <div class="card p-3">
+        <h5>${c.make} ${c.model}</h5>
+        <div>Year: ${c.year}</div>
+        <div>Plate: ${c.plate}</div>
+        <div class="mt-2">
+          <button class="btn btn-sm btn-outline-danger btn-remove" data-id="${c.id}">Remove</button>
+        </div>
+      </div>`;
+    out.appendChild(card);
+  });
+  document.querySelectorAll('.btn-remove').forEach(b => {
+    b.addEventListener('click', () => {
+      let cars = JSON.parse(localStorage.getItem(demoCarsKey) || '[]');
+      cars = cars.filter(x => x.id !== Number(b.dataset.id));
+      localStorage.setItem(demoCarsKey, JSON.stringify(cars));
+      renderCars();
+    });
+  });
+}
+
+document.getElementById('addDemoCar').addEventListener('click', () => {
+  const cars = JSON.parse(localStorage.getItem(demoCarsKey) || '[]');
+  cars.push({id: Date.now(), make: 'Toyota', model: 'Corolla', year: 2020, plate: 'ABC-'+(cars.length+1)});
+  localStorage.setItem(demoCarsKey, JSON.stringify(cars));
+  renderCars();
+});
+
+renderCars();
+</script>

@@ -1,0 +1,7 @@
+# backend/.htaccess
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # send all requests to api.php (Flight will decode)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^ api.php [QSA,L]
+</IfModule>

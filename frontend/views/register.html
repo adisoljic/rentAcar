@@ -1,0 +1,67 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title mb-3">Create an account</h4>
+          <form id="registerForm" autocomplete="off">
+            <div class="mb-3">
+              <label for="reg_name" class="form-label">Full name</label>
+              <input type="text" id="reg_name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="reg_email" class="form-label">Email</label>
+              <input type="email" id="reg_email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="reg_password" class="form-label">Password</label>
+              <input type="password" id="reg_password" class="form-control" required minlength="6">
+            </div>
+            <div class="mb-3">
+              <label for="reg_role" class="form-label">Role</label>
+              <select id="reg_role" class="form-select">
+                <option value="user" selected>User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="btn btn-primary" type="submit">Register</button>
+              <a href="#/login" data-link class="small">Already have an account? Login</a>
+            </div>
+            <div id="registerFeedback" class="mt-3"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('registerForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('reg_name').value.trim();
+    const email = document.getElementById('reg_email').value.trim();
+    const password = document.getElementById('reg_password').value;
+    const role = document.getElementById('reg_role').value;
+
+    if (!name || !email || password.length < 6) {
+      document.getElementById('registerFeedback').innerHTML =
+        '<div class="text-danger">Please fill in all fields and use a password with at least 6 characters.</div>';
+      return;
+    }
+
+    const users = JSON.parse(localStorage.getItem('mock_users') || '[]');
+    if (users.find(u => u.email.toLowerCase() === email.toLowerCase())) {
+      document.getElementById('registerFeedback').innerHTML =
+        '<div class="text-danger">Email already registered (demo).</div>';
+      return;
+    }
+
+    users.push({id: Date.now(), name, email, password, role});
+    localStorage.setItem('mock_users', JSON.stringify(users));
+    document.getElementById('registerFeedback').innerHTML =
+      '<div class="text-success">Registered successfully (demo). You can now <a href="#/login" data-link>login</a>.</div>';
+    this.reset();
+  });
+</script>

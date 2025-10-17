@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="mb-3">Login (Demo)</h4>
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="login_email" class="form-label">Email</label>
+              <input type="email" id="login_email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="login_password" class="form-label">Password</label>
+              <input type="password" id="login_password" class="form-control" required>
+            </div>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-primary" type="submit">Login</button>
+              <a href="#/register" class="btn btn-link">Register</a>
+            </div>
+          </form>
+          <div id="loginFeedback" class="mt-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = document.getElementById('login_email').value.trim();
+  const password = document.getElementById('login_password').value;
+
+  const users = JSON.parse(localStorage.getItem('mock_users') || '[]');
+  const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+  if (!user || (user.password && user.password !== password)) {
+    document.getElementById('loginFeedback').innerHTML = '<div class="text-danger">Invalid credentials (demo)</div>';
+    return;
+  }
+
+  // mock login: store token and email
+  auth.loginDemo(email);
+  auth.applyNavState();
+  document.getElementById('loginFeedback').innerHTML = '<div class="text-success">Logged in (demo). Redirecting...</div>';
+  setTimeout(()=> location.hash = '#/dashboard', 700);
+});
+</script>
