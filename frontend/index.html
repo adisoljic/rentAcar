@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RentACar - Milestone 1</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Common CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" data-link="/">🚗 RentACar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#" data-link="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-link="/dashboard">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-link="/cars">Cars</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-link="/customers">Customers</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-link="/reservations">Reservations</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-link="/profile">Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-link="/login"><i class="fa fa-right-to-bracket"></i> Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main id="app" class="container py-4">
+    <div class="text-center py-5" id="loading">
+      <h3>Welcome to RentACar (Milestone 1)</h3>
+      <p>Loading app views...</p>
+    </div>
+  </main>
+
+  <!-- Bootstrap bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Chart.js for dashboard charts (client-side only for Milestone 1) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- Common JS (loaded once) -->
+  <script src="js/views-loader.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
