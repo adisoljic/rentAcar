@@ -43,6 +43,11 @@ document.getElementById('addDemoCar').addEventListener('click', () => {
   localStorage.setItem(demoCarsKey, JSON.stringify(cars));
   renderCars();
 });
-
+document.getElementById('addDemoCar').addEventListener('click', () => {
+  const cars = JSON.parse(localStorage.getItem(demoCarsKey) || '[]');
+  cars.push({id: Date.now(), make: 'Audi', model: 'A3', year: 2020, plate: 'ABC-'+(cars.length+1)});
+  localStorage.setItem(demoCarsKey, JSON.stringify(cars));
+  renderCars();
+});
 renderCars();
 </script>
