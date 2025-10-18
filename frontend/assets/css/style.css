@@ -1,6 +1,6 @@
 /* style.css - simple styling to make frontend look neat */
 body {
-  background: #f8f9fa;
+  background: #1e331e;
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 .card { border-radius: 10px; }
