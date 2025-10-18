@@ -1,17 +1,24 @@
--- db_schema.sql (Draft ERD - plan only for Milestone 1)
--- Entities: users, customers, categories, cars, reservations
-
--- users (for authentication)
 CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(150),
-  email VARCHAR(150) UNIQUE,
-  password_hash VARCHAR(255),
+  name VARCHAR(150) NOT NULL,
+  email VARCHAR(150) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
   role ENUM('user','admin') DEFAULT 'user',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- customers (optional: link to users)
+-- admins (linked to users table)
+CREATE TABLE IF NOT EXISTS admins (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  full_name VARCHAR(200),
+  phone VARCHAR(50),
+  position VARCHAR(100),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- customers
 CREATE TABLE IF NOT EXISTS customers (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NULL,
@@ -19,7 +26,7 @@ CREATE TABLE IF NOT EXISTS customers (
   phone VARCHAR(50),
   license_number VARCHAR(100),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
 -- categories (car categories)

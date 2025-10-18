@@ -1,9 +1,134 @@
-/* style.css - simple styling to make frontend look neat */
-body {
-  background: #1e331e;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+:root {
+  --primary: #0056d2;     /* Blue theme color */
+  --accent:  #ffb300;     /* Gold accent */
+  --success: #2e7d32;
+  --danger:  #d32f2f;
+  --bg:      #f8f9fb;
+  --text:    #212529;
+  --card-bg: #ffffff;
+  --border:  rgba(0,0,0,0.08);
 }
-.card { border-radius: 10px; }
-.navbar-brand { font-weight: 600; }
-.table td, .table th { vertical-align: middle; }
-.small-muted { font-size: 0.9rem; color: #6c757d; }
+
+/* ---------- BASE ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background-color: var(--bg);
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary);
+}
+a:hover {
+  color: var(--accent);
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  background-color: var(--primary) !important;
+}
+.navbar .navbar-brand {
+  color: #fff !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.navbar .nav-link {
+  color: #e3e7f1 !important;
+  font-weight: 500;
+  margin-right: 0.6rem;
+}
+.navbar .nav-link:hover {
+  color: var(--accent) !important;
+}
+
+/* ---------- HERO SECTION ---------- */
+.hero {
+  background: linear-gradient(135deg, rgba(0,86,210,0.08), rgba(255,179,0,0.06));
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  text-align: center;
+}
+.hero h1 {
+  color: var(--primary);
+  font-weight: 700;
+}
+.hero p {
+  color: #555;
+  font-size: 1.1rem;
+}
+.hero .btn-custom {
+  margin-top: 1rem;
+}
+
+/* ---------- BUTTONS ---------- */
+.btn-custom {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.3rem;
+  font-weight: 500;
+  transition: 0.2s;
+}
+.btn-custom:hover {
+  background-color: #0045ad;
+}
+
+/* ---------- CARDS ---------- */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6b7280;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+/* ---------- UTILITY CLASSES ---------- */
+.text-muted-small {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .hero {
+    padding: 1.8rem;
+  }
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+  .navbar .nav-link {
+    font-size: 0.95rem;
+  }
+}
