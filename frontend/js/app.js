@@ -1,13 +1,11 @@
 // Define routes (hash => file path)
 const routes = {
+  '/': 'views/home.html',
   '/home': 'views/home.html',
-  '/login': 'views/login.html',
-  '/register': 'views/register.html',
-  '/dashboard': 'views/dashboard.html',
-  '/users': 'views/users.html',
   '/cars': 'views/cars.html',
-  '/reservations': 'views/reservations.html',
-  '/profile': 'views/profile.html'
+  '/dashboard': 'views/dashboard.html',
+  '/login': 'views/login.html',
+  '/register': 'views/register.html'
 };
 
 // Function to load HTML file and inject into #app
