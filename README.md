@@ -35,15 +35,15 @@ Administrators can manage car lists, user lists, and reservations through a mana
 
  
 
- Home              Landing page with featured car types 
- Dashboard         Shows rented cars and active reservations 
- Reservations      Car rental form 
- Login             User authentication 
- Register          User registration 
- Cars              Available cars and types 
- Profile           User account page 
- Admin Dashboard   Admin management panel 
- 404               Error page 
+- Home - Landing page with featured car types 
+- Dashboard - Shows rented cars and active reservations 
+- Reservations - Car rental form 
+- Login - User authentication 
+- Register - User registration 
+- Cars - Available cars and types 
+- Profile - User account page 
+- Admin Dashboard - Admin management panel 
+- 404 Error page 
 
 ---
 
